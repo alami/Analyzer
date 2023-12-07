@@ -105,12 +105,12 @@ namespace Analyzer.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!await _roleManager.RoleExistsAsync(CONST.AdminRole))
+            /*if (!await _roleManager.RoleExistsAsync(CONST.AdminRole))
             {
                 await _roleManager.CreateAsync(new IdentityRole(CONST.AdminRole));
                 await _roleManager.CreateAsync(new IdentityRole(CONST.AnalyserRole));
                 await _roleManager.CreateAsync(new IdentityRole(CONST.TesterRole));
-            }
+            }*/
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -129,6 +129,17 @@ namespace Analyzer.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    /*await _userManager.AddToRoleAsync(user, CONST.AdminRole);*/
+                    if (User.IsInRole(CONST.AdminRole))
+                    {
+                        //await _userManager.AddToRoleAsync(user, CONST.AdminRole);
+                        await _userManager.AddToRoleAsync(user, CONST.AnalyserRole);
+                    } else
+                    {
+                        await _userManager.AddToRoleAsync(user, CONST.TesterRole);
+                        
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

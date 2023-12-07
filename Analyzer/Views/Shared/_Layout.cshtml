@@ -25,6 +25,25 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-info" asp-area="Identity" asp-page="/Account/Register">RegAnalyserByAdmin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-danger">
+                            @if (User.IsInRole(Analyzer.CONST.AdminRole))
+                            {
+                                @(Analyzer.CONST.AdminRole)
+                            }
+                            @if (User.IsInRole(Analyzer.CONST.AnalyserRole))
+                            {
+                                @(Analyzer.CONST.AnalyserRole)
+                            }
+                            @if (User.IsInRole(Analyzer.CONST.TesterRole))
+                            {
+                                @(Analyzer.CONST.TesterRole)
+                            }
+                            </a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
