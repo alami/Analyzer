@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Analyzer.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Analyzer.Data
@@ -9,5 +10,6 @@ namespace Analyzer.Data
             : base(options)
         {
         }
+        public DbSet<Device> Device { get; set; }
     }
 }
