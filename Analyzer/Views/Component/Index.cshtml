@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Analyzer.Models.Component>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h3>Component List (Parts, Accessories etc)</h3>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Component" asp-action="Create" class="btn btn-primary">Create New Component</a>
+        </div>
+    </div>
+
+    @if (Model.Count()>0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+             <thead>
+                 <tr>
+                     <th>Name</th>
+                     <th>Price/Value</th>
+                     <th>Time</th>
+                     <th>Pos</th>
+                     <th>Type</th>
+                     <th></th>
+                 </tr>
+             </thead>
+             <tbody>
+                 @foreach(var obj in Model)
+                {
+                    <tr>
+                        <td width=30%>@obj.Name</td>
+                        <td width=10%>@obj.Price</td>
+                        <td width=10%>@obj.Time</td>
+                        <td width=10%>@obj.Pos</td>
+                        <td width=10%>@obj.Type</td>
+                        <td>
+                        <td class="text-center">
+                            <div class="w075 btn-group" role="group">
+                                <a asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
+                        </td>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Components</p>
+    }
+</div>

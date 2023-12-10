@@ -2,6 +2,12 @@
 
 namespace Analyzer.Models
 {
+    public enum ComponentType
+    {
+        Evaluate = 1,
+        Parts = 2,
+        Accessories =3,
+    }
     public class Component
     {
         [Key]
@@ -11,8 +17,7 @@ namespace Analyzer.Models
         public int? Time { get; set; }
 
         public int Pos { get; set; } = 1;
-        public int Type { get; set; } = 1;
-
+        public ComponentType Type { get; set; }
 
     }
 }
