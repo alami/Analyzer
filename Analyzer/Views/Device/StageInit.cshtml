@@ -1,0 +1,179 @@
+﻿@model Analyzer.Models.VM.StageInitVM
+
+
+<form method="post" asp-action="StageInit">
+     <div class="border p-3">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         <div class="form-group row">
+             <h2 class="text-info pl-3">Create Init Stage by Administrator</h2>
+         </div>
+        <div class="row" style="padding-top: 10px">
+            <div class="col-4">
+                <input asp-for="Device.Id" hidden />
+                <input asp-for="Device.Type" hidden />
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.Name"  class="form-control" />
+                        <span asp-validation-for="Device.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.SN"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.SN"  class="form-control" />
+                        <span asp-validation-for="Device.SN" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.Model"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.Model"  class="form-control" />
+                        <span asp-validation-for="Device.Model" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.ModelName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.ModelName"  class="form-control" />
+                        <span asp-validation-for="Device.ModelName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.Comments"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.Comments"  class="form-control" />
+                        <span asp-validation-for="Device.Comments" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.OtherComments"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.OtherComments" class="form-control" />
+                        <span asp-validation-for="Device.OtherComments" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.TotalCount"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.TotalCount" class="form-control" />
+                        <span asp-validation-for="Device.TotalCount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.TesterTime"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.TesterTime" class="form-control" />
+                        <span asp-validation-for="Device.TesterTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.PersntLost"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.PersntLost" class="form-control" />
+                        <span asp-validation-for="Device.PersntLost" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.PersntResult"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.PersntResult" class="form-control" />
+                        <span asp-validation-for="Device.PersntResult" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Device.Result"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Device.Result" class="form-control" />
+                        <span asp-validation-for="Device.Result" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-4">
+                @for (int i=0; i<Model.EvaluateList.Count();i++)
+                {
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="@Model.EvaluateList[i].Name">
+                        <input asp-for="@Model.EvaluateList[i].Name">
+                        <input asp-for="@Model.EvaluateList[i].Comment">
+                        <input asp-for="@Model.EvaluateList[i].Price">
+                        <input asp-for="@Model.EvaluateList[i].Time">
+                        <input asp-for="@Model.EvaluateList[i].Pos" hidden>
+                </div>
+                }
+                <br />                
+                @for (int i = 0; i < Model.AccessoriesList.Count(); i++)
+                    {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="@Model.AccessoriesList[i].Name">
+                        <input asp-for="@Model.AccessoriesList[i].Name">
+                        <input asp-for="@Model.AccessoriesList[i].Comment">
+                        <input asp-for="@Model.AccessoriesList[i].Price">
+                        <input asp-for="@Model.AccessoriesList[i].Time">
+                        <input asp-for="@Model.AccessoriesList[i].Pos" hidden>
+                    </div>
+                }
+
+            </div>
+            <div class="col-4">
+                @for (int i = 0; i < Model.PartsList.Count(); i++)
+                {
+                <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="@Model.PartsList[i].Name">
+                        <input asp-for="@Model.PartsList[i].Name">
+                        <input asp-for="@Model.PartsList[i].Comment">
+                        <input asp-for="@Model.PartsList[i].Price">
+                        <input asp-for="@Model.PartsList[i].Time">
+                        <input asp-for="@Model.PartsList[i].Pos" hidden>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row" style="padding-top: 10px">
+            <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">
+                                <i class="fas fa-sign-out-alt"></i> Back
+                            </a>
+                        </div>
+                    </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+     </div>
+
+
+</form>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

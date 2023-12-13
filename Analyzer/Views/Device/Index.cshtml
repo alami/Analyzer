@@ -18,15 +18,15 @@
              <thead>
                  <tr>
                      <th>Device Name</th>
-                    <th>SN</th>
+                    <th>Serial Number</th>
                     <th>Model</th>
-                    <th>ModelName</th>
+                    <th>Model Name</th>
                     <th>Comments</th>
-                    <th>OtherComments</th>
-                    <th>TotalCount</th>
-                    <th>TesterTime</th>
-                    <th>PersntLost</th>
-                    <th>PersntResult</th>
+                    <th>Other Comments</th>
+                    <th>Total Count</th>
+                    <th>Tester Time</th>
+                    <th>%<br />Lost</th>
+                    <th>% Result</th>
                     <th>Result</th>
                      <th></th>
                  </tr>
@@ -48,6 +48,9 @@
                         <td width=7%>@obj.Result</td>
                         <td class="text-center">
                             <div class="w075 btn-group" role="group">
+                                <a asp-controller="Device" asp-action="StageInit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </a>
                                 <a asp-controller="Device" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
                                     <i class="fas fa-edit"></i>
                                 </a>

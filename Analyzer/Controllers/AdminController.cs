@@ -1,6 +1,7 @@
 ﻿using Analyzer.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Analyzer.Controllers
 {
@@ -14,6 +15,10 @@ namespace Analyzer.Controllers
         }
         public IActionResult Index()
         {
+            var claimsIdentity = (ClaimsIdentity) User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var userId = User.FindFirstValue(ClaimTypes.Name);
+
             return View();
         }
     }

@@ -1,12 +1,17 @@
 ﻿using Analyzer.Data;
 using Analyzer.Models;
+using Analyzer.Models.VM;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Analyzer.Controllers
 {
     public class DeviceController : Controller
     {
         private readonly ApplicationDbContext _db;
+
+        [BindProperty]
+        public StageInitVM StageVM {  get; set; }
         public DeviceController(ApplicationDbContext db)
         {
             _db = db;
@@ -83,6 +88,26 @@ namespace Analyzer.Controllers
             _db.Device.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public IActionResult StageInit(int id)
+        {
+            StageVM = new StageInitVM() {
+                Device = _db.Device.Find(id),
+                PartsList = _db.Component.Where(u=>u.Type == ComponentType.Parts).ToList(),
+                EvaluateList = _db.Component.Where(u=>u.Type == ComponentType.Evaluate).ToList(),
+                AccessoriesList = _db.Component.Where(u=>u.Type == ComponentType.Accessories).ToList(),                
+            };
+            return View(StageVM);
+        }
+        [HttpPost, ActionName("StageInit")]
+        [ValidateAntiForgeryToken]
+        public IActionResult StageInitPost(StageInitVM StageVM)
+        {
+            /*Device d = _db.Device.Find(id);
+            IEnumerable <DeviceComponent>  dc = _db.DeviceComponent.Where(u=>u.DeviceId == id);
+            StageInitVM stageVM1 = stageVM;*/
+
+            return RedirectToAction ("Index");
         }
     }
 }
