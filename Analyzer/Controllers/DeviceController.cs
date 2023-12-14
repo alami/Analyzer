@@ -3,6 +3,7 @@ using Analyzer.Models;
 using Analyzer.Models.VM;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace Analyzer.Controllers
 {
@@ -106,6 +107,42 @@ namespace Analyzer.Controllers
             /*Device d = _db.Device.Find(id);
             IEnumerable <DeviceComponent>  dc = _db.DeviceComponent.Where(u=>u.DeviceId == id);
             StageInitVM stageVM1 = stageVM;*/
+
+            for (int i = 0; i < StageVM.AccessoriesList.Count(); i++)
+            {
+                if (StageVM.AccessoriesList[i].Visible)
+                {
+                    DeviceComponent deviceComponent = new DeviceComponent()
+                    {
+                        DeviceId = StageVM.Device.Id,
+                        ComponentId = StageVM.AccessoriesList[i].Id,
+                        Stage = Stage.Init
+                    };
+                    _db.DeviceComponent.Add(deviceComponent);
+                }
+                if (StageVM.EvaluateList[i].Visible)
+                {
+                    DeviceComponent deviceComponent = new DeviceComponent()
+                    {
+                        DeviceId = StageVM.Device.Id,
+                        ComponentId = StageVM.EvaluateList[i].Id,
+                        Stage = Stage.Init
+                    };
+                    _db.DeviceComponent.Add(deviceComponent);
+                }
+                if (StageVM.PartsList[i].Visible)
+                {
+                    DeviceComponent deviceComponent = new DeviceComponent()
+                    {
+                        DeviceId = StageVM.Device.Id,
+                        ComponentId = StageVM.PartsList[i].Id,
+                        Stage = Stage.Init
+                    };
+                    _db.DeviceComponent.Add(deviceComponent);
+                }
+
+                _db.SaveChanges();
+            }
 
             return RedirectToAction ("Index");
         }
