@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Analyzer.Models.Device>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Init Stage List of Devices</h2>
+        </div>
+    </div>
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Device Name</th>
+                    <th>Serial Number</th>
+                    <th>Model</th>
+                    <th>Model Name</th>
+                    <th>Comments</th>
+                    <th>Other Comments</th>
+                    <th>Total Count</th>
+                    <th>Tester Time</th>
+                    <th>%<br />Lost</th>
+                    <th>% Result</th>
+                    <th>Result</th>
+                    <th>Init Stage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td width=7%>@obj.Name</td>
+                        <td width=7%>@obj.SN</td>
+                        <td width=7%>@obj.Model</td>
+                        <td width=7%>@obj.ModelName</td>
+                        <td width=7%>@obj.Comments</td>
+                        <td width=7%>@obj.OtherComments</td>
+                        <td width=7%>@obj.TotalCount</td>
+                        <td width=7%>@obj.TesterTime</td>
+                        <td width=0%>@obj.PersntLost</td>
+                        <td width=7%>@obj.PersntResult</td>
+                        <td width=7%>@obj.Result</td>
+                        <td class="text-center">
+                            <div class="w075 btn-group" role="group">
+                                <a asp-action="StageInit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </a>
+                                @* <a asp-controller="Device" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a asp-controller="Device" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a> *@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No devices</p>
+    }
+</div>
