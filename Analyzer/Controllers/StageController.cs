@@ -53,10 +53,23 @@ namespace Analyzer.Controllers
                 EvaluateList = l,
                 PartsList = null,
                 AccessoriesList = null,
-        };
-            
-
+            };
             return View(StageVM);
+        }
+
+
+        [HttpPost, ActionName("StageInit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult StageInitPost(StageDevCompVM StageVM)
+        {
+            foreach (var item in StageVM.DevCompList)
+            {
+                DeviceComponent db_item = _db.DeviceComponent.Find(item.Id);
+                db_item.Comment = item.Comment;
+                db_item.Value = item.Value;                
+            }
+            _db.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: StageController/Create
