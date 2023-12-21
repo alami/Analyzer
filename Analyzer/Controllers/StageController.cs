@@ -31,7 +31,7 @@ namespace Analyzer.Controllers
         {
             Component c;
             List <Component> l = new List<Component> ();
-            List<DeviceComponent> dc = _db.DeviceComponent.Where(u => (u.DeviceId == id && u.Stage == Stage.Init)).OrderBy(u=>u.ComponentId).ToList();
+            List<DeviceComponent> dc = _db.DeviceComponent.Where(u => (u.DeviceId == id && u.Stage == Stages.Init)).OrderBy(u=>u.ComponentId).ToList();
             foreach (var item in dc)
             {
                 c = _db.Component.Find(item.ComponentId);
@@ -47,7 +47,7 @@ namespace Analyzer.Controllers
             }
             StageVM = new StageDevCompVM()
             {
-                Stage = Stage.Init,
+                Stage = Stages.Init,
                 Device = _db.Device.Find(id),
                 DevCompList = dc,
                 EvaluateList = l,

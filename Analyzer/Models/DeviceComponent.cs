@@ -3,15 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Analyzer.Models
 {
-    public enum Stage
-    {
-        Init = 1,
-        Testing = 2,
-        Analyze = 3,
-        Result = 4,
-        Noname = 5,
-    }
-
     public class DeviceComponent
     {
 
@@ -26,7 +17,7 @@ namespace Analyzer.Models
         [ForeignKey("ComponentId")]
         public virtual Component Component { get; set; }
 
-        public Stage Stage { get; set; }
+        public Stages Stage { get; set; }
         public int? Value { get; set; }
         public string? Comment{ get; set; }
 

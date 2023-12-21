@@ -116,7 +116,7 @@ namespace Analyzer.Controllers
                     {
                         DeviceId = StageVM.Device.Id,
                         ComponentId = StageVM.AccessoriesList[i].Id,
-                        Stage = Stage.Init
+                        Stage = Stages.Init
                     };
                     _db.DeviceComponent.Add(deviceComponent);
                 }
@@ -126,7 +126,7 @@ namespace Analyzer.Controllers
                     {
                         DeviceId = StageVM.Device.Id,
                         ComponentId = StageVM.EvaluateList[i].Id,
-                        Stage = Stage.Init
+                        Stage = Stages.Init
                     };
                     _db.DeviceComponent.Add(deviceComponent);
                 }
@@ -136,7 +136,7 @@ namespace Analyzer.Controllers
                     {
                         DeviceId = StageVM.Device.Id,
                         ComponentId = StageVM.PartsList[i].Id,
-                        Stage = Stage.Init
+                        Stage = Stages.Init
                     };
                     _db.DeviceComponent.Add(deviceComponent);
                 }

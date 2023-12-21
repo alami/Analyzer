@@ -4,7 +4,7 @@ namespace Analyzer.Models.VM
 {
     public class StageDevCompVM
     {
-        public Stage Stage { get; set; }
+        public Stages Stage { get; set; }
         public Device? Device { get; set; }
         public List<DeviceComponent>? DevCompList { get; set; }
         public List<Component>? PartsList { get; set; }
