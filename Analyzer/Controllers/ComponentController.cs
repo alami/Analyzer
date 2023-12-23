@@ -15,6 +15,7 @@ namespace Analyzer.Controllers
         {
             if (type == null)
             {
+                ViewBag.type = "All";
                 IEnumerable<Component> objList = _db.Component;
                 return View(objList);
             }
@@ -22,6 +23,7 @@ namespace Analyzer.Controllers
             {
                 try
                 {
+                    ViewBag.Type = Enum.GetName(typeof(ComponentType), type);
                     IEnumerable<Component> objList = _db.Component.Where(u => u.Type == type);
                     return View(objList);
                 } catch (Exception ex)
