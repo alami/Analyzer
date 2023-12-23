@@ -11,10 +11,24 @@ namespace Analyzer.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(ComponentType? type)
         {
-            IEnumerable<Component> objList = _db.Component;
-            return View(objList);
+            if (type == null)
+            {
+                IEnumerable<Component> objList = _db.Component;
+                return View(objList);
+            }
+            else 
+            {
+                try
+                {
+                    IEnumerable<Component> objList = _db.Component.Where(u => u.Type == type);
+                    return View(objList);
+                } catch (Exception ex)
+                {
+                    return NotFound();
+                }                
+            }            
         }
         //GET Create
         public IActionResult Create()

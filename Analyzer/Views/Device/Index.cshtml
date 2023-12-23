@@ -28,7 +28,8 @@
                     <th>%<br />Lost</th>
                     <th>% Result</th>
                     <th>Result</th>
-                     <th></th>
+                     <th>Device action</th>
+                     <th>Stage action</th>
                  </tr>
              </thead>
              <tbody>
@@ -46,17 +47,54 @@
                         <td width=0%>@obj.PersntLost</td>
                         <td width=7%>@obj.PersntResult</td>
                         <td width=7%>@obj.Result</td>
-                        <td class="text-center">
+                        <td>
                             <div class="w075 btn-group" role="group">
-                                <a asp-controller="Device" asp-action="StageInit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                </a>
                                 <a asp-controller="Device" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a asp-controller="Device" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="w075 btn-group" role="group">
+                                @if (obj.Stage == null)
+                                {
+                                    <a asp-controller="SInit" asp-action="Create" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        <i class="fa-solid fa-user-tie"></i> Create Init stage 
+                                    </a>
+                                }
+                                @if (obj.Stage == Stages.Init)
+                                {
+                                    <a asp-controller="SInit" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        Edit Init Stage</a>
+                                }
+                                @if (obj.Stage == Stages.Tester)
+                                {
+                                    <a asp-controller="STester" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        Edit Tester Stage
+                                    </a>
+                                }
+                                @if (obj.Stage == Stages.Analyser)
+                                {
+                                    <a asp-controller="SAnalyser" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        Edit Analyser Stage
+                                    </a>
+                                }
+                                @if (obj.Stage == Stages.Calculate)
+                                {
+                                    <a asp-controller="SAnalyser" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        Edit Calculate Stage
+                                    </a>
+                                }
+                                @if (obj.Stage == Stages.Result)
+                                {
+                                    <a asp-controller="SAnalyser" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        Edit Result Stage
+                                    </a>
+                                }
+
                             </div>
                         </td>
                     </tr>

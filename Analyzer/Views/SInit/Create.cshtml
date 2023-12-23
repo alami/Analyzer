@@ -1,12 +1,12 @@
 ﻿@model Analyzer.Models.VM.StageInitVM
 
 
-<form method="post" asp-action="StageInit">
-     <div class="border p-3">
-         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-         <div class="form-group row">
-             <h2 class="text-info pl-3">Create Init Stage by Administrator</h2>
-         </div>
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Create Init Stage by Administrator</h2>
+        </div>
         <div class="row" style="padding-top: 10px">
             <div class="col-4">
                 <input asp-for="Device.Id" hidden />
@@ -16,7 +16,7 @@
                         <label asp-for="Device.Name"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Device.Name"  class="form-control" />
+                        <input asp-for="Device.Name" class="form-control" />
                         <span asp-validation-for="Device.Name" class="text-danger"></span>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         <label asp-for="Device.SN"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Device.SN"  class="form-control" />
+                        <input asp-for="Device.SN" class="form-control" />
                         <span asp-validation-for="Device.SN" class="text-danger"></span>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         <label asp-for="Device.Model"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Device.Model"  class="form-control" />
+                        <input asp-for="Device.Model" class="form-control" />
                         <span asp-validation-for="Device.Model" class="text-danger"></span>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <label asp-for="Device.ModelName"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Device.ModelName"  class="form-control" />
+                        <input asp-for="Device.ModelName" class="form-control" />
                         <span asp-validation-for="Device.ModelName" class="text-danger"></span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <label asp-for="Device.Comments"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Device.Comments"  class="form-control" />
+                        <input asp-for="Device.Comments" class="form-control" />
                         <span asp-validation-for="Device.Comments" class="text-danger"></span>
                     </div>
                 </div>
@@ -113,17 +113,17 @@
 
             </div>
             <div class="col-4">
-                @for (int i=0; i<Model.EvaluateList.Count();i++)
+                @for (int i = 0; i < Model.EvaluateList.Count(); i++)
                 {
-                <div class="form-check">
-                        @Html.CheckBoxFor(r=>Model.EvaluateList[i].Visible)
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.EvaluateList[i].Visible)
                         @Model.EvaluateList[i].Name | @Model.EvaluateList[i].Price
                         <input asp-for="@Model.EvaluateList[i].Id" hidden>
-                </div>
+                    </div>
                 }
-                <br />                
+                <br />
                 @for (int i = 0; i < Model.AccessoriesList.Count(); i++)
-                    {
+                {
                     <div class="form-check">
                         @Html.CheckBoxFor(r => Model.AccessoriesList[i].Visible)
                         @Model.AccessoriesList[i].Name | @Model.AccessoriesList[i].Price
@@ -135,7 +135,7 @@
             <div class="col-4">
                 @for (int i = 0; i < Model.PartsList.Count(); i++)
                 {
-                <div class="form-check">
+                    <div class="form-check">
                         @Html.CheckBoxFor(r => Model.PartsList[i].Visible)
                         @Model.PartsList[i].Name | @Model.PartsList[i].Price
                         <input asp-for="@Model.PartsList[i].Id" hidden>
@@ -145,21 +145,21 @@
         </div>
         <div class="row" style="padding-top: 10px">
             <div class="form-group row">
-                    <div class="col-8 offset-2 row">
-                        <div class="col">
-                            <input type="submit" class="btn btn-info w-100" value="Create" />
-                        </div>
-                        <div class="col">
-                            <a asp-action="Index" class="btn btn-success w-100">
-                                <i class="fas fa-sign-out-alt"></i> Back
-                            </a>
-                        </div>
+                <div class="col-8 offset-2 row">
+                    <div class="col">
+                        <input type="submit" class="btn btn-info w-100" value="Create" />
                     </div>
-            <div class="col-4">
-                @* Keep this empty *@
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-success w-100">
+                            <i class="fas fa-sign-out-alt"></i> Back
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    @* Keep this empty *@
+                </div>
             </div>
         </div>
-     </div>
 
 
 </form>
