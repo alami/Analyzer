@@ -1,20 +1,22 @@
 ﻿using Analyzer.Data;
+using Analyzer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Analyzer.Controllers
 {
-    [Authorize]
-    public class TesterController : Controller
+    //[Authorize]
+    public class SAnalуzerController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public TesterController(ApplicationDbContext db)
+        public SAnalуzerController(ApplicationDbContext db)
         {
             _db = db;
         }
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Device> sList = _db.Device.Where(u=>u.Stage==Stages.Analyser);
+            return View(sList);
         }
     }
 }

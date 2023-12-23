@@ -77,33 +77,6 @@ namespace Analyzer.Controllers
             }
             return View(obj);
         }
-        public IActionResult Component(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _db.Component.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
-        }
-        //POST Component
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult ComponentPost(int? id)
-        {
-            var obj = _db.Component.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _db.Component.Remove(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)

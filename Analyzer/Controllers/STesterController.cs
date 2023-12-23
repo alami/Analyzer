@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Analyzer.Controllers
 {
-    [Authorize]
-    public class AnalyzerController : Controller
+    //[Authorize]
+    public class STesterController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public AnalyzerController(ApplicationDbContext db)
+        public STesterController(ApplicationDbContext db)
         {
             _db = db;
         }
