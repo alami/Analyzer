@@ -76,5 +76,56 @@ namespace Analyzer.Controllers
 
             return RedirectToAction("Index");
         }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0){
+                return NotFound();
+            }
+            StageVM = new StageInitVM(); 
+            StageVM.Device =_db.Device.Find(id);
+            if (StageVM.Device == null)
+            {
+                return NotFound();
+            }
+            return View(StageVM);
+        }
+        //POST Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Device obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Device.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(StageVM);
+        }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0){
+                return NotFound();
+            }
+            var obj=_db.Device.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        //POST Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var obj = _db.Device.Find(id);
+            if (obj==null) {
+                return NotFound();
+            }
+            _db.Device.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

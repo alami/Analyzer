@@ -32,7 +32,7 @@ namespace Analyzer.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Device obj)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _db.Device.Add(obj);
                 _db.SaveChanges();

@@ -35,20 +35,25 @@
                         <td width=7%>@obj.OtherComments</td>
                         <td width=7%>@obj.TotalCount</td>
                         <td width=7%>@obj.TesterTime</td>
+                        <th>Init Stage action</th>
+                        <th>Next Stage action</th>
+                    
 
                         <td class="text-center">
                             <div class="w075 btn-group" role="group">
-                                <a asp-controller="Device" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
+                                <a asp-controller="SInit" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a asp-controller="Device" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
-                                    <i class="fas fa-trash-alt">Delete from Init Stage</i>
-                                </a>
-                                <a asp-controller="Device" asp-controller="STester" asp-action="Create" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                    Tester Stage
+                                <a asp-controller="SInit" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
                                 </a>
                             </div>
                         </td>
+                        <td class="text-center">
+                                <a sp-controller="STester" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                    <i class="fa-solid fa-user-tie"></i> Edit Tester Stage
+                                </a>
+                        </td>                        
                     </tr>
                 }
             </tbody>

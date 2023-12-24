@@ -67,31 +67,31 @@
                                 }
                                 @if (obj.Stage == Stages.Init)
                                 {
-                                    <a asp-controller="SInit" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                        Edit Init Stage</a>
+                                    <a asp-controller="SInit" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        <i class="fa-solid fa-user-tie"></i>Edit Init Stage</a>
                                 }
                                 @if (obj.Stage == Stages.Tester)
                                 {
-                                    <a asp-controller="STester" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                        Edit Tester Stage
+                                    <a asp-controller="STester" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        <i class="fa-solid fa-user-tie"></i>Edit Tester Stage
                                     </a>
                                 }
                                 @if (obj.Stage == Stages.Analyser)
                                 {
-                                    <a asp-controller="SAnalуzer" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                        Edit Analyser Stage
+                                    <a asp-controller="SAnalуzer" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        <i class="fa-solid fa-user-tie"></i>Edit Analyser Stage
                                     </a>
                                 }
                                 @if (obj.Stage == Stages.Calculate)
                                 {
-                                    <a asp-controller="SAnalуzer" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                        Edit Calculate Stage
+                                    <a asp-controller="SAnalуzer" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        <i class="fa-solid fa-user-tie"></i>Edit Calculate Stage
                                     </a>
                                 }
                                 @if (obj.Stage == Stages.Result)
                                 {
-                                    <a asp-controller="SAnalуzer" asp-action="Index" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                        Edit Result Stage
+                                    <a asp-controller="SAnalуzer" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                        <i class="fa-solid fa-user-tie"></i>Edit Result Stage
                                     </a>
                                 }
 
