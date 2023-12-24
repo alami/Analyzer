@@ -10,6 +10,9 @@ namespace Analyzer.Controllers
         [BindProperty]
         public StageInitVM StageVM { get; set; }
 
+        [BindProperty]
+        public StageEditVM StageEdVM { get; set; }
+
         private readonly ApplicationDbContext _db;
         public SInitController (ApplicationDbContext db)
         {
@@ -25,8 +28,8 @@ namespace Analyzer.Controllers
             StageVM = new StageInitVM()
             {
                 Device = _db.Device.Find(id),
-                PartsList = _db.Component.Where(u => u.Type == ComponentType.Parts).ToList(),
                 EvaluateList = _db.Component.Where(u => u.Type == ComponentType.Evaluate).ToList(),
+                PartsList = _db.Component.Where(u => u.Type == ComponentType.Parts).ToList(),
                 AccessoriesList = _db.Component.Where(u => u.Type == ComponentType.Accessories).ToList(),
             };
             return View(StageVM);
@@ -78,16 +81,18 @@ namespace Analyzer.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            if (id == null || id == 0){
-                return NotFound();
-            }
-            StageVM = new StageInitVM(); 
-            StageVM.Device =_db.Device.Find(id);
-            if (StageVM.Device == null)
-            {
-                return NotFound();
-            }
-            return View(StageVM);
+            if (id == null || id == 0) return NotFound();
+            StageEdVM = new StageEditVM();
+            StageEdVM.Device =_db.Device.Find(id);
+
+            if (StageEdVM.Device == null) return NotFound();
+            StageEdVM.DevCompList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init).ToList();
+            StageEdVM.CompList = _db.Component.ToList();
+            /*            StageEdVM.EvaluateList = _db.Component.Where(u => u.Type == ComponentType.Evaluate).ToList();
+                        StageEdVM.PartsList = _db.Component.Where(u => u.Type == ComponentType.Parts).ToList();
+                        StageEdVM.AccessoriesList = _db.Component.Where(u => u.Type == ComponentType.Accessories).ToList();
+            */
+            return View(StageEdVM);
         }
         //POST Edit
         [HttpPost]

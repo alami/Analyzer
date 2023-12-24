@@ -1,4 +1,4 @@
-﻿@model Analyzer.Models.VM.StageInitVM
+﻿@model Analyzer.Models.VM.StageEditVM
 
 
 <form method="post" asp-action="Create">
@@ -112,44 +112,59 @@
                 </div>
 
             </div>
-                <div class="col-4">
-                    @if (Model.EvaluateList != null)
+            <div class="col-8">
+                @if (Model.DevCompList != null)
+                {
+                    @for (int i = 0; i < Model.DevCompList.Count(); i++)
                     {
-                    @for (int i = 0; i < Model.EvaluateList.Count(); i++)
-                    {
-                        <div class="form-check">
-                            @Html.CheckBoxFor(r => Model.EvaluateList[i].Visible)
-                            @Model.EvaluateList[i].Name | @Model.EvaluateList[i].Price
-                            <input asp-for="@Model.EvaluateList[i].Id" hidden>
+                        <div style="display:inline">
+                            <div class="input-group">
+                            <label style="width:150px">@Model.CompList[Model.DevCompList[i].ComponentId].Name</label>
+                            <label style="width:50px">@Model.CompList[Model.DevCompList[i].ComponentId].Price</label>
+                            <input asp-for="DevCompList[i].Comment" class="form-control" style="width: 100px" />
+                            <input asp-for="DevCompList[i].Value" class="form-control" style="width: 50px" />
+                            </div>
                         </div>
                     }
-                    <br/>
-                    }
-                    @if (Model.AccessoriesList != null)
-                    {
-                    @for (int i = 0; i < Model.AccessoriesList.Count(); i++)
-                    {
-                        <div class="form-check">
-                            @Html.CheckBoxFor(r => Model.AccessoriesList[i].Visible)
-                            @Model.AccessoriesList[i].Name | @Model.AccessoriesList[i].Price
-                            <input asp-for="@Model.AccessoriesList[i].Id" hidden>
-                        </div>
-                    }
-                    }
-                </div>
-            @if (Model.PartsList != null)
-            {
-                <div class="col-4">
-                    @for (int i = 0; i < Model.PartsList.Count(); i++)
-                    {
-                        <div class="form-check">
-                            @Html.CheckBoxFor(r => Model.PartsList[i].Visible)
-                            @Model.PartsList[i].Name | @Model.PartsList[i].Price
-                            <input asp-for="@Model.PartsList[i].Id" hidden>
-                        </div>
-                    }
-                </div>
-            }
+                }
+            </div>
+            @* <div class="col-4">
+                @if (Model.EvaluateList != null)
+                {
+                @for (int i = 0; i < Model.EvaluateList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.EvaluateList[i].Visible)
+                        @Model.EvaluateList[i].Name | @Model.EvaluateList[i].Price
+                        <input asp-for="@Model.EvaluateList[i].Id" hidden>
+                    </div>
+                }
+                <br/>
+                }
+                @if (Model.AccessoriesList != null)
+                {
+                @for (int i = 0; i < Model.AccessoriesList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.AccessoriesList[i].Visible)
+                        @Model.AccessoriesList[i].Name | @Model.AccessoriesList[i].Price
+                        <input asp-for="@Model.AccessoriesList[i].Id" hidden>
+                    </div>
+                }
+                }
+                <br />
+                @if (Model.PartsList != null)
+                {
+                @for (int i = 0; i < Model.PartsList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.PartsList[i].Visible)
+                        @Model.PartsList[i].Name | @Model.PartsList[i].Price
+                        <input asp-for="@Model.PartsList[i].Id" hidden>
+                    </div>
+                }
+                }
+            </div> *@
         </div>
         <div class="row" style="padding-top: 10px">
             <div class="form-group row">
