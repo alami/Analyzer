@@ -19,8 +19,9 @@
                     <th>Comments</th>
                     <th>Other Comments</th>
                     <th>Total Count</th>
-                    <th>Tester Time</th>
-                    <th></th>
+                    <th>Tester Time</th>                    
+                    <th>Init Stage action</th>
+                    <th>Next Stage action</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,8 +36,6 @@
                         <td width=7%>@obj.OtherComments</td>
                         <td width=7%>@obj.TotalCount</td>
                         <td width=7%>@obj.TesterTime</td>
-                        <th>Init Stage action</th>
-                        <th>Next Stage action</th>
                     
 
                         <td class="text-center">
@@ -50,8 +49,8 @@
                             </div>
                         </td>
                         <td class="text-center">
-                                <a sp-controller="STester" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                    <i class="fa-solid fa-user-tie"></i> Edit Tester Stage
+                                <a asp-controller="STester" asp-action="Create" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                <i class="fa-solid fa-user-tie"></i> Create Tester Stage
                                 </a>
                         </td>                        
                     </tr>

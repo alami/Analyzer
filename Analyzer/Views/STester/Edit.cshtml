@@ -1,0 +1,154 @@
+﻿@model Analyzer.Models.VM.StageEditVM
+
+
+<form method="post" asp-action="Edit">
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Create Init Stage by Administrator</h2>
+            <h4>
+                for Device @Model.Device.Name , SN @Model.Device.SN, Model @Model.Device.Model
+            </h4>
+        </div>
+        <div class="row" style="padding-top: 10px">
+            <div class="col-8">
+                <label style="padding-top:15px"><b>Evaluate List</b></label>
+                @if (Model.DevCompEvalList != null)
+                {
+                    @for (int i = 0; i < Model.DevCompEvalList.Count(); i++)
+                    {
+                        <div style="display:inline">
+                            <div class="input-group">
+                                @{
+                                    int componentId = Model.DevCompEvalList[i].ComponentId;
+                                    Component component = Model.CompList.FirstOrDefault(u => u.Id == componentId);
+                                }
+                                <label style="width:150px">@component.Name</label>
+                                <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompEvalList[i].Id" hidden />
+                                <input asp-for="DevCompEvalList[i].DeviceId" hidden />
+                                <input asp-for="DevCompEvalList[i].ComponentId" hidden />
+                                <input asp-for="DevCompEvalList[i].Stage" hidden />
+                                <input asp-for="DevCompEvalList[i].Pos" hidden />
+                                <input asp-for="DevCompEvalList[i].Type" hidden />
+                                <input asp-for="DevCompEvalList[i].Comment" class="form-control" style="width: 100px" />
+                                <input asp-for="DevCompEvalList[i].Value" class="form-control" style="width: 50px" />
+                            </div>
+                        </div>
+                    }
+                }
+                <label style="padding-top:15px"><b>Accessories List</b></label>
+                @if (Model.DevCompAssList != null)
+                {
+                    @for (int i = 0; i < Model.DevCompAssList.Count(); i++)
+                    {
+                        <div style="display:inline">
+                            <div class="input-group">
+                                @{
+                                    int componentId = Model.DevCompAssList[i].ComponentId;
+                                    Component component = Model.CompList.FirstOrDefault(u => u.Id == componentId);
+                                }
+                                <label style="width:150px">@component.Name</label>
+                                <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompAssList[i].Id" hidden />
+                                <input asp-for="DevCompAssList[i].DeviceId" hidden />
+                                <input asp-for="DevCompAssList[i].ComponentId" hidden />
+                                <input asp-for="DevCompAssList[i].Stage" hidden />
+                                <input asp-for="DevCompAssList[i].Pos" hidden />
+                                <input asp-for="DevCompAssList[i].Type" hidden />
+                                <input asp-for="DevCompAssList[i].Comment" class="form-control" style="width: 100px" />
+                                <input asp-for="DevCompAssList[i].Value" class="form-control" style="width: 50px" />
+                            </div>
+                        </div>
+                    }
+                }
+                <label style="padding-top:15px"><b>Parts List</b></label>
+                @if (Model.DevCompPartsList != null)
+                {
+                    @for (int i = 0; i < Model.DevCompPartsList.Count(); i++)
+                    {
+                        <div style="display:inline">
+                            <div class="input-group">
+                                @{
+                                    int componentId = Model.DevCompPartsList[i].ComponentId;
+                                    Component component = Model.CompList.FirstOrDefault(u => u.Id == componentId);
+                                }
+                                <label style="width:150px">@component.Name</label>
+                                <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompPartsList[i].Id" hidden />
+                                <input asp-for="DevCompPartsList[i].DeviceId" hidden />
+                                <input asp-for="DevCompPartsList[i].ComponentId" hidden />
+                                <input asp-for="DevCompPartsList[i].Stage" hidden />
+                                <input asp-for="DevCompPartsList[i].Pos" hidden />
+                                <input asp-for="DevCompPartsList[i].Type" hidden />
+                                <input asp-for="DevCompPartsList[i].Comment" class="form-control" style="width: 100px" />
+                                <input asp-for="DevCompPartsList[i].Value" class="form-control" style="width: 50px" />
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            @* <div class="col-4">
+                @if (Model.EvaluateList != null)
+                {
+                @for (int i = 0; i < Model.EvaluateList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.EvaluateList[i].Visible)
+                        @Model.EvaluateList[i].Name | @Model.EvaluateList[i].Price
+                        <input asp-for="@Model.EvaluateList[i].Id" hidden>
+                    </div>
+                }
+                <br/>
+                }
+                @if (Model.AccessoriesList != null)
+                {
+                @for (int i = 0; i < Model.AccessoriesList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.AccessoriesList[i].Visible)
+                        @Model.AccessoriesList[i].Name | @Model.AccessoriesList[i].Price
+                        <input asp-for="@Model.AccessoriesList[i].Id" hidden>
+                    </div>
+                }
+                }
+                <br />
+                @if (Model.PartsList != null)
+                {
+                @for (int i = 0; i < Model.PartsList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.CheckBoxFor(r => Model.PartsList[i].Visible)
+                        @Model.PartsList[i].Name | @Model.PartsList[i].Price
+                        <input asp-for="@Model.PartsList[i].Id" hidden>
+                    </div>
+                }
+                }
+            </div> *@
+        </div>
+        <div class="row" style="padding-top: 10px">
+            <div class="form-group row">
+                <div class="col-8 offset-2 row">
+                    <div class="col">
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-success w-100">
+                            <i class="fas fa-sign-out-alt"></i> Back
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    @* Keep this empty *@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -40,6 +40,8 @@ namespace Analyzer.Controllers
             /*Device d = _db.Device.Find(id);
             IEnumerable <DeviceComponent>  dc = _db.DeviceComponent.Where(u=>u.DeviceId == id);
             StageInitVM stageVM1 = stageVM;*/
+            StageVM.Device.Stage = Stages.Init;
+            _db.Device.Update(StageVM.Device);
 
             for (int i = 0; i < StageVM.AccessoriesList.Count(); i++)
             {
@@ -49,34 +51,41 @@ namespace Analyzer.Controllers
                     {
                         DeviceId = StageVM.Device.Id,
                         ComponentId = StageVM.AccessoriesList[i].Id,
+                        Type = StageVM.AccessoriesList[i].Type,
                         Stage = Stages.Init
                     };
                     _db.DeviceComponent.Add(deviceComponent);
                 }
+            }
+            for (int i = 0; i < StageVM.EvaluateList.Count(); i++)
+            {
                 if (StageVM.EvaluateList[i].Visible)
                 {
                     DeviceComponent deviceComponent = new DeviceComponent()
                     {
                         DeviceId = StageVM.Device.Id,
                         ComponentId = StageVM.EvaluateList[i].Id,
+                        Type = StageVM.EvaluateList[i].Type,
                         Stage = Stages.Init
                     };
                     _db.DeviceComponent.Add(deviceComponent);
                 }
+            }
+            for (int i = 0; i < StageVM.PartsList.Count(); i++)
+            {
                 if (StageVM.PartsList[i].Visible)
                 {
                     DeviceComponent deviceComponent = new DeviceComponent()
                     {
                         DeviceId = StageVM.Device.Id,
                         ComponentId = StageVM.PartsList[i].Id,
+                        Type = StageVM.PartsList[i].Type,
                         Stage = Stages.Init
                     };
                     _db.DeviceComponent.Add(deviceComponent);
                 }
-
-                _db.SaveChanges();
             }
-
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int? id)
@@ -110,7 +119,7 @@ namespace Analyzer.Controllers
             }
             return View(StageVM);
         }
-        public IActionResult Delete(int? id)
+        /*public IActionResult Delete(int? id)
         {
             if (id == null || id == 0){
                 return NotFound();
@@ -134,6 +143,6 @@ namespace Analyzer.Controllers
             _db.Device.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }*/
     }
 }

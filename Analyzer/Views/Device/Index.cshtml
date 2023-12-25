@@ -25,9 +25,9 @@
                     <th>Other Comments</th>
                     <th>Total Count</th>
                     <th>Tester Time</th>
-                    <th>%<br />Lost</th>
+                    @* <th>%<br />Lost</th>
                     <th>% Result</th>
-                    <th>Result</th>
+                    <th>Result</th> *@
                      <th>Device action</th>
                      <th>Stage action</th>
                  </tr>
@@ -44,9 +44,9 @@
                         <td width=7%>@obj.OtherComments</td>
                         <td width=7%>@obj.TotalCount</td>
                         <td width=7%>@obj.TesterTime</td>
-                        <td width=0%>@obj.PersntLost</td>
+                        @* <td width=0%>@obj.PersntLost</td>
                         <td width=7%>@obj.PersntResult</td>
-                        <td width=7%>@obj.Result</td>
+                        <td width=7%>@obj.Result</td> *@
                         <td>
                             <div class="w075 btn-group" role="group">
                                 <a asp-controller="Device" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">

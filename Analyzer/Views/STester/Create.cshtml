@@ -5,7 +5,7 @@
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
-            <h2 class="text-info pl-3">Create Init Stage by Administrator</h2>
+            <h2 class="text-info pl-3">Create by Tester</h2>
         </div>
         <div class="row" style="padding-top: 10px">
             <div class="col-4">
@@ -84,33 +84,9 @@
                         <span asp-validation-for="Device.TesterTime" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.PersntLost"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.PersntLost" class="form-control" />
-                        <span asp-validation-for="Device.PersntLost" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.PersntResult"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.PersntResult" class="form-control" />
-                        <span asp-validation-for="Device.PersntResult" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.Result"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.Result" class="form-control" />
-                        <span asp-validation-for="Device.Result" class="text-danger"></span>
-                    </div>
-                </div>
+                <input asp-for="Device.PersntLost" hidden />
+                <input asp-for="Device.PersntResult" hidden />
+                <input asp-for="Device.Result" hidden />
 
             </div>
             <div class="col-4">
