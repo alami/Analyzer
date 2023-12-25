@@ -1,117 +1,16 @@
 ﻿@model Analyzer.Models.VM.StageEditVM
 
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Edit">
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
             <h2 class="text-info pl-3">Create Init Stage by Administrator</h2>
+            <h4>
+                for Device @Model.Device.Name , SN @Model.Device.SN, Model @Model.Device.Model
+            </h4>
         </div>
         <div class="row" style="padding-top: 10px">
-            <div class="col-4">
-                <input asp-for="Device.Id" hidden />
-                <input asp-for="Device.Type" hidden />
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.Name"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.Name" class="form-control" />
-                        <span asp-validation-for="Device.Name" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.SN"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.SN" class="form-control" />
-                        <span asp-validation-for="Device.SN" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.Model"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.Model" class="form-control" />
-                        <span asp-validation-for="Device.Model" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.ModelName"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.ModelName" class="form-control" />
-                        <span asp-validation-for="Device.ModelName" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.Comments"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.Comments" class="form-control" />
-                        <span asp-validation-for="Device.Comments" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.OtherComments"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.OtherComments" class="form-control" />
-                        <span asp-validation-for="Device.OtherComments" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.TotalCount"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.TotalCount" class="form-control" />
-                        <span asp-validation-for="Device.TotalCount" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.TesterTime"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.TesterTime" class="form-control" />
-                        <span asp-validation-for="Device.TesterTime" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.PersntLost"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.PersntLost" class="form-control" />
-                        <span asp-validation-for="Device.PersntLost" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.PersntResult"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.PersntResult" class="form-control" />
-                        <span asp-validation-for="Device.PersntResult" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Device.Result"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Device.Result" class="form-control" />
-                        <span asp-validation-for="Device.Result" class="text-danger"></span>
-                    </div>
-                </div>
-
-            </div>
             <div class="col-8">
                 <label style="padding-top:15px"><b>Evaluate List</b></label>
                 @if (Model.DevCompEvalList != null)
@@ -126,6 +25,12 @@
                                 }
                                 <label style="width:150px">@component.Name</label>
                                 <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompEvalList[i].Id" hidden />
+                                <input asp-for="DevCompEvalList[i].DeviceId" hidden />
+                                <input asp-for="DevCompEvalList[i].ComponentId" hidden />
+                                <input asp-for="DevCompEvalList[i].Stage" hidden />
+                                <input asp-for="DevCompEvalList[i].Pos" hidden />
+                                <input asp-for="DevCompEvalList[i].Type" hidden />
                                 <input asp-for="DevCompEvalList[i].Comment" class="form-control" style="width: 100px" />
                                 <input asp-for="DevCompEvalList[i].Value" class="form-control" style="width: 50px" />
                             </div>
@@ -145,6 +50,12 @@
                                 }
                                 <label style="width:150px">@component.Name</label>
                                 <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompAssList[i].Id" hidden />
+                                <input asp-for="DevCompAssList[i].DeviceId" hidden />
+                                <input asp-for="DevCompAssList[i].ComponentId" hidden />
+                                <input asp-for="DevCompAssList[i].Stage" hidden />
+                                <input asp-for="DevCompAssList[i].Pos" hidden />
+                                <input asp-for="DevCompAssList[i].Type" hidden />
                                 <input asp-for="DevCompAssList[i].Comment" class="form-control" style="width: 100px" />
                                 <input asp-for="DevCompAssList[i].Value" class="form-control" style="width: 50px" />
                             </div>
@@ -164,6 +75,12 @@
                                 }
                                 <label style="width:150px">@component.Name</label>
                                 <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompPartsList[i].Id" hidden />
+                                <input asp-for="DevCompPartsList[i].DeviceId" hidden />
+                                <input asp-for="DevCompPartsList[i].ComponentId" hidden />
+                                <input asp-for="DevCompPartsList[i].Stage" hidden />
+                                <input asp-for="DevCompPartsList[i].Pos" hidden />
+                                <input asp-for="DevCompPartsList[i].Type" hidden />
                                 <input asp-for="DevCompPartsList[i].Comment" class="form-control" style="width: 100px" />
                                 <input asp-for="DevCompPartsList[i].Value" class="form-control" style="width: 50px" />
                             </div>
@@ -213,7 +130,7 @@
             <div class="form-group row">
                 <div class="col-8 offset-2 row">
                     <div class="col">
-                        <input type="submit" class="btn btn-info w-100" value="Create" />
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
                     </div>
                     <div class="col">
                         <a asp-action="Index" class="btn btn-success w-100">

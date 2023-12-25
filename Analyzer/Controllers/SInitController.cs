@@ -84,26 +84,27 @@ namespace Analyzer.Controllers
             if (id == null || id == 0) return NotFound();
             StageEdVM = new StageEditVM();
             StageEdVM.Device =_db.Device.Find(id);
-
             if (StageEdVM.Device == null) return NotFound();
+
             StageEdVM.CompList = _db.Component.ToList();
             StageEdVM.DevCompEvalList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init && u.Type == ComponentType.Evaluate).ToList();
             StageEdVM.DevCompPartsList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init && u.Type == ComponentType.Parts).ToList();
             StageEdVM.DevCompAssList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init && u.Type == ComponentType.Accessories).ToList();
-            /*            StageEdVM.EvaluateList = _db.Component.Where(u => u.Type == ComponentType.Evaluate).ToList();
-                        StageEdVM.PartsList = _db.Component.Where(u => u.Type == ComponentType.Parts).ToList();
-                        StageEdVM.AccessoriesList = _db.Component.Where(u => u.Type == ComponentType.Accessories).ToList();
-            */
             return View(StageEdVM);
         }
         //POST Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Device obj)
+        public IActionResult Edit(StageEditVM StageEdVM)
         {
-            if (ModelState.IsValid)
+            if (! ModelState.IsValid)
             {
-                _db.Device.Update(obj);
+                for (int i = 0; i < StageEdVM.DevCompEvalList.Count; i++)
+                    _db.DeviceComponent.Update(StageEdVM.DevCompEvalList[i]);
+                for (int i = 0; i < StageEdVM.DevCompAssList.Count; i++)
+                    _db.DeviceComponent.Update(StageEdVM.DevCompAssList[i]);
+                for (int i = 0; i < StageEdVM.DevCompPartsList.Count; i++)
+                    _db.DeviceComponent.Update(StageEdVM.DevCompPartsList[i]);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
