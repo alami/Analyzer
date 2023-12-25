@@ -86,8 +86,10 @@ namespace Analyzer.Controllers
             StageEdVM.Device =_db.Device.Find(id);
 
             if (StageEdVM.Device == null) return NotFound();
-            StageEdVM.DevCompList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init).ToList();
             StageEdVM.CompList = _db.Component.ToList();
+            StageEdVM.DevCompEvalList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init && u.Type == ComponentType.Evaluate).ToList();
+            StageEdVM.DevCompPartsList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init && u.Type == ComponentType.Parts).ToList();
+            StageEdVM.DevCompAssList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Init && u.Type == ComponentType.Accessories).ToList();
             /*            StageEdVM.EvaluateList = _db.Component.Where(u => u.Type == ComponentType.Evaluate).ToList();
                         StageEdVM.PartsList = _db.Component.Where(u => u.Type == ComponentType.Parts).ToList();
                         StageEdVM.AccessoriesList = _db.Component.Where(u => u.Type == ComponentType.Accessories).ToList();

@@ -113,16 +113,59 @@
 
             </div>
             <div class="col-8">
-                @if (Model.DevCompList != null)
+                <label style="padding-top:15px"><b>Evaluate List</b></label>
+                @if (Model.DevCompEvalList != null)
                 {
-                    @for (int i = 0; i < Model.DevCompList.Count(); i++)
+                    @for (int i = 0; i < Model.DevCompEvalList.Count(); i++)
                     {
                         <div style="display:inline">
                             <div class="input-group">
-                            <label style="width:150px">@Model.CompList[Model.DevCompList[i].ComponentId].Name</label>
-                            <label style="width:50px">@Model.CompList[Model.DevCompList[i].ComponentId].Price</label>
-                            <input asp-for="DevCompList[i].Comment" class="form-control" style="width: 100px" />
-                            <input asp-for="DevCompList[i].Value" class="form-control" style="width: 50px" />
+                                @{
+                                    int componentId = Model.DevCompEvalList[i].ComponentId;
+                                    Component component = Model.CompList.FirstOrDefault(u => u.Id == componentId);
+                                }
+                                <label style="width:150px">@component.Name</label>
+                                <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompEvalList[i].Comment" class="form-control" style="width: 100px" />
+                                <input asp-for="DevCompEvalList[i].Value" class="form-control" style="width: 50px" />
+                            </div>
+                        </div>
+                    }
+                }
+                <label style="padding-top:15px"><b>Accessories List</b></label>
+                @if (Model.DevCompAssList != null)
+                {
+                    @for (int i = 0; i < Model.DevCompAssList.Count(); i++)
+                    {
+                        <div style="display:inline">
+                            <div class="input-group">
+                                @{
+                                    int componentId = Model.DevCompAssList[i].ComponentId;
+                                    Component component = Model.CompList.FirstOrDefault(u => u.Id == componentId);
+                                }
+                                <label style="width:150px">@component.Name</label>
+                                <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompAssList[i].Comment" class="form-control" style="width: 100px" />
+                                <input asp-for="DevCompAssList[i].Value" class="form-control" style="width: 50px" />
+                            </div>
+                        </div>
+                    }
+                }
+                <label style="padding-top:15px"><b>Parts List</b></label>
+                @if (Model.DevCompPartsList != null)
+                {
+                    @for (int i = 0; i < Model.DevCompPartsList.Count(); i++)
+                    {
+                        <div style="display:inline">
+                            <div class="input-group">
+                                @{
+                                    int componentId = Model.DevCompPartsList[i].ComponentId;
+                                    Component component = Model.CompList.FirstOrDefault(u => u.Id == componentId);
+                                }
+                                <label style="width:150px">@component.Name</label>
+                                <label style="width:50px">@component.Price</label>
+                                <input asp-for="DevCompPartsList[i].Comment" class="form-control" style="width: 100px" />
+                                <input asp-for="DevCompPartsList[i].Value" class="form-control" style="width: 50px" />
                             </div>
                         </div>
                     }
