@@ -20,6 +20,8 @@ namespace Analyzer.Models
         public Stages Stage { get; set; }
         public int? Value { get; set; }
         public string? Comment{ get; set; }
+        public int Pos { get; set; } = 1;
+        public ComponentType Type { get; set; }
 
     }
 }
