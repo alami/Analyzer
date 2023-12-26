@@ -7,8 +7,9 @@ namespace Analyzer.Models
         Init = 1,
         Tester = 2,
         Analyser = 3,
-        Calculate = 4,
-        Result = 5,
+        Analyser2 = 4,
+        Calculate = 5,
+        Result = 6,
     }
     public enum Сonclusions
     {
