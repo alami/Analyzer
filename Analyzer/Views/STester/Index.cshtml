@@ -20,7 +20,8 @@
                     <th>Other Comments</th>
                     <th>Total Count</th>
                     <th>Tester Time</th>
-                    <th></th>
+                    <th>Tester Stage action</th>
+                    <th>Next Stage action</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,8 +36,6 @@
                         <td width=7%>@obj.OtherComments</td>
                         <td width=7%>@obj.TotalCount</td>
                         <td width=7%>@obj.TesterTime</td>
-                        <th>Init Stage action</th>
-                        <th>Next Stage action</th>
                     
 
                         <td class="text-center">
@@ -51,7 +50,7 @@
                         </td>
                         <td class="text-center">
                                 <a asp-controller="SAnalyzer" asp-action="Create" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                <i class="fa-solid fa-user-tie"></i> Create Analyzer Stage
+                                <i class="fa-solid fa-user-tie"></i> Go to the Analyzer Stage
                                 </a>
                         </td>                        
                     </tr>

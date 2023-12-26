@@ -90,5 +90,37 @@ namespace Analyzer.Controllers
             _db.SaveChanges();   
             return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0) return NotFound();
+            StageEdVM = new StageEditVM();
+            StageEdVM.Device = _db.Device.Find(id);
+            if (StageEdVM.Device == null) return NotFound();
+
+            StageEdVM.CompList = _db.Component.ToList();
+            StageEdVM.DevCompEvalList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Tester && u.Type == ComponentType.Evaluate).ToList();
+            StageEdVM.DevCompPartsList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Tester && u.Type == ComponentType.Parts).ToList();
+            StageEdVM.DevCompAssList = _db.DeviceComponent.Where(u => u.DeviceId == id && u.Stage == Stages.Tester && u.Type == ComponentType.Accessories).ToList();
+            return View(StageEdVM);
+        }
+        //POST Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(StageEditVM StageEdVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                for (int i = 0; i < StageEdVM.DevCompEvalList.Count; i++)
+                    _db.DeviceComponent.Update(StageEdVM.DevCompEvalList[i]);
+                for (int i = 0; i < StageEdVM.DevCompAssList.Count; i++)
+                    _db.DeviceComponent.Update(StageEdVM.DevCompAssList[i]);
+                for (int i = 0; i < StageEdVM.DevCompPartsList.Count; i++)
+                    _db.DeviceComponent.Update(StageEdVM.DevCompPartsList[i]);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(StageVM);
+        }
     }
 }
