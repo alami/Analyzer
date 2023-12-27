@@ -3,13 +3,25 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table>
+        <tr>
+            <td colspan="4"><img src="/images/analyzer-process.jpg"</td>
+        </tr>
+        <tr>
+            <td width="25%" align="center">
+                <a asp-action="index" asp-controller="SInit">Admin page</a>
+            </td>
+            <td width="25%" align="center">
+                <a asp-action="index" asp-controller="STester">Tester page</a>
+            </td>
+            <td width="25%" align="center">
+                <a asp-action="index" asp-controller="SAnalуzer">Analyzer page</a>
+            </td>
+            <td width="25%" align="center">
+                <a asp-action="index" asp-controller="SCalculate">Calculate & Result</a>
+            </td>
+        </tr>
+    </table>
+  
+    
 </div>
-
-
-<ul>
-    <li><a asp-action="index" asp-controller="STester">Tester page</a></li>
-    <li><a asp-action="index" asp-controller="SAnalуzer">Analyzer page</a></li>
-    <li><a asp-action="index" asp-controller="admin">Admin page</a></li>
-</ul>

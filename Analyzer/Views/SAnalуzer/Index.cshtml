@@ -3,7 +3,7 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2>Analyser Stage Device List</h2>
+            <h2>Analyzer Stage Device List</h2>
         </div>
     </div>
 
@@ -20,7 +20,8 @@
                     <th>Other Comments</th>
                     <th>Total Count</th>
                     <th>Tester Time</th>
-                    <th></th>
+                    <th>Analyzer Stage action</th>
+                    <th>Next Stage action</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,21 +32,25 @@
                         <td width=7%>@obj.SN</td>
                         <td width=7%>@obj.Model</td>
                         <td width=7%>@obj.ModelName</td>
-                        <td width=7%>@obj.Comments</td>
-                        <td width=7%>@obj.OtherComments</td>
+                        <td width=15%>@obj.Comments</td>
+                        <td width=15%>@obj.OtherComments</td>
                         <td width=7%>@obj.TotalCount</td>
                         <td width=7%>@obj.TesterTime</td>
 
                         <td class="text-center">
-                            <div class="w075 btn-group" role="group">
-                                <a asp-controller="Device" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-primary mx-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a asp-controller="Device" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
-                                    <i class="fas fa-trash-alt">Delete from Init Stage</i>
+                                <a asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-danger mx-2">
+                                    <i class="fas fa-trash-alt"></i>
                                 </a>
-                                <a asp-controller="Device" asp-controller="STester" asp-action="Create" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
-                                    Tester Stage
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Device" asp-controller="SCalculate" asp-action="Create" asp-route-Id="@obj.Id" class="btn btn-success mx-2">
+                                    Calculate Stage
                                 </a>
                             </div>
                         </td>
